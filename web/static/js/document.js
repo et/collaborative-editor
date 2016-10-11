@@ -31,6 +31,11 @@ let Document = {
     tinymce.init({
       selector: textareaId,
       setup: (editor) => {
+        editor.on('change', () => {
+          let payload = { content: editor.getContent() }
+          documentChannel.push("document_update", payload)
+                         .receive("error", e => console.log(e))
+        }),
         editor.on('keyUp', () => {
           let payload = { content: editor.getContent() }
           documentChannel.push("document_update", payload)
@@ -51,7 +56,7 @@ let Document = {
     })
 
     documentChannel.on("document_update", ({id, content, updated_by}) => {
-      if(user !== updated_by) {
+      if(currentUser !== updated_by) {
         this.renderDocument(content)
       }
     })
