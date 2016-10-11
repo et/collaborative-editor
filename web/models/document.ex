@@ -1,7 +1,10 @@
-defmodule Editor.Post do
+defmodule Editor.Document do
   use Editor.Web, :model
 
-  schema "posts" do
+  @required_fields ~w(title content user)
+  @optional_fields ~w()
+
+  schema "documents" do
     field :title, :string
     field :content, :string
 
@@ -13,7 +16,7 @@ defmodule Editor.Post do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :content])
-    |> validate_required([:title, :content])
+    |> cast(params, [:title])
+    |> validate_required([:title])
   end
 end

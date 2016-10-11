@@ -17,7 +17,9 @@ defmodule Editor.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/posts", PostController
+    get "/documents", DocumentController, :index
+    get "/documents/show", DocumentController, :show
+    get "/documents/init", DocumentController, :init
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,22 @@
+<h2>Listing documents</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for document <- @documents do %>
+    <tr>
+      <td><%= document["title"] %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: document_path(@conn, :show, id: document["id"]), class: "btn btn-default btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

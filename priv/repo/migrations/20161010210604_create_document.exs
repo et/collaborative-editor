@@ -1,8 +1,8 @@
-defmodule Editor.Repo.Migrations.CreatePost do
+defmodule Editor.Repo.Migrations.CreateDocument do
   use Ecto.Migration
 
   def change do
-    create table(:posts) do
+    create table(:documents) do
       add :title, :string
       add :content, :text
 
