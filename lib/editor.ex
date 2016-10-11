@@ -8,10 +8,9 @@ defmodule Editor do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # Start the Ecto repository
       supervisor(Editor.Repo, []),
-      # Start the endpoint when the application starts
       supervisor(Editor.Endpoint, []),
+      supervisor(Editor.Presence, []),
       # Start your own worker by calling: Editor.Worker.start_link(arg1, arg2, arg3)
       # worker(Editor.Worker, [arg1, arg2, arg3]),
       worker(RethinkDatabase, [])

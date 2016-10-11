@@ -1,4 +1,14 @@
+import { Presence } from "phoenix";
+
+let listBy = (user, {metas: metas}) => {
+  return {
+    user: user,
+    onlineAt: metas[0].online_at
+  }
+};
+
 let Document = {
+  currentUser: "Anonymous",
   init(socket, element) {
     if (!element) { return; }
 
@@ -6,10 +16,16 @@ let Document = {
     let textareaId = element.getAttribute("data-textarea-id")
 
     let urlParams = new URLSearchParams(window.location.search);
-    let user = urlParams.get("user") || "Anonymous";
-    document.getElementById("user").innerHTML = user
 
-    socket.connect({user: user});
+    if (urlParams.has("user")) {
+      this.currentUser = urlParams.get("user");
+    }
+    let currentUser = urlParams.get("user") || "Anonymous";
+    let presences = {}
+
+    document.getElementById("user").innerHTML = currentUser
+
+    socket.connect({user: currentUser});
     let documentChannel = socket.channel("documents:" + documentId)
 
     tinymce.init({
@@ -22,6 +38,17 @@ let Document = {
         })
       }
     });
+
+    documentChannel.on("presence_state", state => {
+      presences = Presence.syncState(presences, state)
+      this.renderPresences(presences, currentUser)
+    })
+
+
+    documentChannel.on("presence_diff", diff => {
+      presences = Presence.syncDiff(presences, diff)
+      this.renderPresences(presences, currentUser)
+    })
 
     documentChannel.on("document_update", ({id, content, updated_by}) => {
       if(user !== updated_by) {
@@ -36,6 +63,13 @@ let Document = {
 
   renderDocument(content) {
     tinyMCE.activeEditor.setContent(content);
+  },
+
+  renderPresences(presences, currentUser) {
+    let users = Presence.list(presences, listBy)
+      .filter(presence => presence.user !== currentUser)
+      .map(presence => presence.user)
+    document.getElementById("user_list").innerHTML = users.join(", ")
   }
 
 }
