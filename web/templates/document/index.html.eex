@@ -11,10 +11,10 @@
   <tbody>
 <%= for document <- @documents do %>
     <tr>
-      <td><%= document["title"] %></td>
+      <td><%= document.title %></td>
 
       <td class="text-right">
-        <%= link "Show", to: document_path(@conn, :show, id: document["id"]), class: "btn btn-default btn-xs" %>
+        <%= link "Show", to: document_path(@conn, :show, id: document.id), class: "btn btn-default btn-xs" %>
       </td>
     </tr>
 <% end %>
