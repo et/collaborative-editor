@@ -13,7 +13,7 @@ defmodule Editor.DocumentView do
     %{
       id: document.id,
       content: document.content,
-      updated_by: document.last_updated_by
+      updated_by: document.updated_by
     }
   end
 end

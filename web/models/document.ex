@@ -1,13 +1,12 @@
 defmodule Editor.Document do
   use Editor.Web, :model
 
-  @required_fields ~w(title)
-  @optional_fields ~w(content)
+  @required_fields ~w(title content user)
+  @optional_fields ~w()
 
   schema "documents" do
     field :title, :string
     field :content, :string
-    field :last_updated_by, :string
 
     timestamps()
   end
@@ -17,7 +16,7 @@ defmodule Editor.Document do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :content, :last_updated_by])
+    |> cast(params, [:title])
     |> validate_required([:title])
   end
 end

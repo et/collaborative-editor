@@ -9,18 +9,3 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-
- alias Editor.Repo
- alias Editor.Document
-
- Repo.delete_all Document
-
-Repo.insert! %Document{
-  title: "Document 1",
-  content: ""
-}
-
-Repo.insert! %Document{
-  title: "Document 2",
-  content: ""
-}
