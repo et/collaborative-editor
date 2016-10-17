@@ -19,4 +19,12 @@ defmodule Editor.Document do
     |> cast(params, [:title])
     |> validate_required([:title])
   end
+
+  def as_struct(document) do
+    %__MODULE__{
+      content: document["content"],
+      title: document["title"],
+      id: document["id"]
+    }
+  end
 end

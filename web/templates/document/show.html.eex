@@ -1,10 +1,10 @@
-<h2><%= @document["title"] %></h2>
+<h2><%= @document.title %></h2>
 <p>Current User: <strong><span id="user"></span></strong></p>
 <p>Other users: <span id="user_list">Loading other users...</span></p>
 <%= content_tag :div, id: "document",
-    data: [id: @document["id"], textarea_id: "#document_editor"] do %>
+    data: [id: @document.id, textarea_id: "#document_editor"] do %>
   <textarea name="document_editor" id="document_editor" rows="10" cols="80">
-    <%= @document["content"] %>
+    <%= @document.content %>
   </textarea>
 <% end %>
 

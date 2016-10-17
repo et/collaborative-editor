@@ -1,6 +1,7 @@
 defmodule Editor.DocumentController do
   use Editor.Web, :controller
 
+  alias Editor.Document
   alias RethinkDatabase, as: DB
   alias RethinkDB.Query
 
@@ -19,7 +20,8 @@ defmodule Editor.DocumentController do
     query = Query.table("documents")
 
     documents = case DB.run(query) do
-      %RethinkDB.Collection{data: documents} -> documents
+      %RethinkDB.Collection{data: documents} ->
+        documents |> Enum.map(&Document.as_struct/1)
       _ -> []
     end
 
@@ -35,7 +37,7 @@ defmodule Editor.DocumentController do
       _ -> nil
     end
 
-    render(conn, "show.html", document: document)
+    render(conn, "show.html", document: Document.as_struct(document))
   end
 
   #def update(conn, %{"id" => id, "document" => document_params}) do
