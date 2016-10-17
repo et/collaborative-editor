@@ -1,7 +1,5 @@
-<%= link "Back to documents", to: document_path(@conn, :index) %>
-
 <h2><%= @document["title"] %></h2>
-<p>Current User: <span id="user"></span></p>
+<p>Current User: <strong><span id="user"></span></strong></p>
 <p>Other users: <span id="user_list">Loading other users...</span></p>
 <%= content_tag :div, id: "document",
     data: [id: @document["id"], textarea_id: "#document_editor"] do %>
@@ -9,3 +7,5 @@
     <%= @document["content"] %>
   </textarea>
 <% end %>
+
+<%= link "Back to documents", to: document_path(@conn, :index) %>
