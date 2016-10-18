@@ -25,11 +25,14 @@ initialize two documents in the DB.
 Now visit [localhost:4000/documents](http://localhost:4000/documents) and pick a document
 (e.g. `http://localhost:4000/documents/show?id=a48ead01-47f8-4e0a-9742-f8a02437b6c3`).
 
-Add a query param to specify your user,
+Add a query param to specify your user:
+
 `http://localhost:4000/documents/show?id=a48ead01-47f8-4e0a-9742-f8a02437b6c3&user=Alice`
 
-Now open up more windows while changing the user,
+Now open up more windows while changing the user:
+
 `http://localhost:4000/documents/show?id=a48ead01-47f8-4e0a-9742-f8a02437b6c3&user=Bob`
+
 `http://localhost:4000/documents/show?id=a48ead01-47f8-4e0a-9742-f8a02437b6c3&user=Eric`
 
 Type in one of the windows and notice how the content in all the windows is updated.
