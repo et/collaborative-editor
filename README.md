@@ -20,7 +20,7 @@ You can see a video of it in action here: https://www.youtube.com/watch?v=w4u_o9
   * npm install
   * mix phoenix.server
 
-Visit [localhost:4000/documents/init](http://localhost:4000/init) in your browser. This will
+Visit [localhost:4000/documents/init](http://localhost:4000/documents/init) in your browser. This will
 initialize two documents in the DB.
 Now visit [localhost:4000/documents](http://localhost:4000/documents) and pick a document
 (e.g. `http://localhost:4000/documents/show?id=a48ead01-47f8-4e0a-9742-f8a02437b6c3`).
