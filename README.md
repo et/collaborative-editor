@@ -11,14 +11,14 @@ You can see a video of it in action here: https://www.youtube.com/watch?v=w4u_o9
 
 ### In one terminal window
 
-  * brew install rethinkdb
-  * rethinkdb
+  * `brew install rethinkdb`
+  * `rethinkdb`
 
 ### In other terminal window
 
-  * mix deps.get
-  * npm install
-  * mix phoenix.server
+  * `mix deps.get`
+  * `npm install`
+  * `mix phoenix.server`
 
 Visit [localhost:4000/documents/init](http://localhost:4000/documents/init) in your browser. This will
 initialize two documents in the DB.
